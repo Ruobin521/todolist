@@ -7,14 +7,23 @@ class TodoList extends Component {
     super(props)
     this.state = {
       inputValue: '123',
-      list: [222, 3333]
+      list: ['222', '3333']
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleBtnClick = this.handleBtnClick.bind(this)
     this.handleItemDelete = this.handleItemDelete.bind(this)
   }
 
+  componentWillMount() {
+    console.log('componentWillMount');
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount');
+  }
+
   render() {
+    console.log("render");
     return (
       <Fragment>
         <div>
@@ -25,6 +34,9 @@ class TodoList extends Component {
             type="text"
             value={this.state.inputValue}
             onChange={this.handleInputChange}
+            ref={input => {
+              this.input = input
+            }}
           />
           <button onClick={this.handleBtnClick}>提交</button>
         </div>
@@ -55,6 +67,8 @@ class TodoList extends Component {
     //         inputValue: e.target.value
     //     }
     // })
+
+    console.log(this.input)
 
     const value = e.target.value
     this.setState(() => ({
