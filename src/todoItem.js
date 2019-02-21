@@ -16,6 +16,17 @@ class TodoItem extends Component {
     const { deleteItem, index } = this.props
     deleteItem(index)
   }
+
+  componentWillUnmount() {
+    console.log("CHILD  componentWillUnmount");
+  }
+
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+     if(nextProps.content  !== this.props.content) {
+       return true
+     }
+     return false
+  }
 }
 
 TodoItem.propTypes = {
